@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Deep-Kanji Flashcards & Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <header>
+      <h2>Deep Kanji — Mode Selection</h2>
+      <select id="modeSelector" onchange="switchMode()" style="padding:8px; font-size:16px;">
+        <option value="flashcard">Flashcards</option>
+        <option value="quiz">Quiz</option>
+        <option value="game">Mini-Game</option>
+      </select>
+    </header>
+
+    <main>
+
+      <!-- ========== FLASHCARDS ========== -->
+      <section id="flashcard-section" class="panel active">
+
+        <div class="card-area">
+          <div id="card" class="card" tabindex="0" title="Click or press Space to flip">
+
+            <div class="card-face card-front">
+              <div class="kanji" id="kanji-char">空</div>
+              <div class="reading" id="kanji-reading">そら / くう</div>
+            </div>
+
+            <div class="card-face card-back">
+              <div class="meaning" id="kanji-meaning">Emptiness / the void</div>
+              <div class="detail" id="kanji-detail">
+                <strong>Deeper notes:</strong> In Buddhism, 空 (kū) indicates the emptiness of self-nature; not mere absence but interdependence.
+              </div>
+
+              <!-- NEW: Example & Audio Controls -->
+              <div class="card-extra">
+                <button id="show-examples">Show Examples (Jisho)</button>
+                <button id="play-audio">🔊 Play Reading (TTS)</button>
+                <div id="examples-box" class="examples-box hidden"></div>
+                <div id="audio-status" class="audio-status"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="status-row">
+          <span id="card-index">1 / 10</span>
+          <span id="okay-count">Okay: 0</span>
+        </div>
+
+        <div class="controls-row">
+          <button id="prev-card">◀ Prev</button>
+          <button id="next-card">Next ▶</button>
+          <button id="shuffle-cards">Shuffle</button>
+          <button id="mark-okay">Mark Okay</button>
+        </div>
+      </section>
+
+      <!-- ========== QUIZ ========== -->
+      <section id="quiz-section" class="panel">
+        <div class="quiz-setup">
+          <label>Number of questions:
+            <select id="quiz-size">
+              <option value="3">3</option>
+              <option value="5" selected>5</option>
+            </select>
+          </label>
+          <button id="start-quiz">Start Quiz</button>
+        </div>
+
+        <div id="quiz-area" class="hidden">
+          <div class="quiz-header">
+            <div>Question <span id="q-num">1</span> / <span id="q-total">5</span></div>
+            <div>Score: <span id="q-score">0</span></div>
+          </div>
+
+          <div class="quiz-card">
+            <div class="kanji-large" id="q-kanji">夢</div>
+            <div class="q-clues" id="q-clues">Reading: ゆめ</div>
+          </div>
+
+          <div class="choices" id="q-choices"></div>
+
+          <div id="q-feedback" class="feedback"></div>
+
+          <div class="quiz-footer">
+            <button id="q-next" disabled>Next Question</button>
+            <button id="q-end">End Quiz</button>
+          </div>
+        </div>
+
+        <div id="quiz-summary" class="hidden">
+          <h3>Quiz Summary</h3>
+          <p>Your score: <strong id="summary-score">0</strong></p>
+          <button id="quiz-retry">Try Again</button>
+        </div>
+      </section>
+
+      <section id="game-section" class="panel">
+        <h2>Kanji Mini-Game</h2>
+
+       <div id="game-card" class="game-card">
+       <div class="kanji-big" id="game-kanji">空</div>
+ 
+       <div class="reading-area">
+       <span class="reading-label">Reading:</span>
+       <span id="game-reading">そら / くう</span>
+       <button id="game-audio" class="audio-btn">🔊</button>
+       </div>
+  </div>
+
+  <div class="game-controls">
+    <button id="game-new">New Kanji</button>
+  </div>
+</section>
+
+
+        
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>Built for learning — flip (Space) • prev/next (← →) • mini-game typing</p>
+    </footer>
+
+  </div>
+
+  <audio id="tts-audio" preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
