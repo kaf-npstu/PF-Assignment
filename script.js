@@ -111,10 +111,6 @@ document.addEventListener("keydown", e => {
 
 renderCard();
 
-/* ---------------------------
-   JISHO EXAMPLES (Option A)
-   Fetch related words & short defs from Jisho.org
----------------------------- */
 async function fetchJishoExamples(kanji) {
     const box = document.getElementById("examples-box");
     box.classList.remove("hidden");
@@ -130,7 +126,6 @@ async function fetchJishoExamples(kanji) {
             return;
         }
 
-        // Show up to 6 meaningful entries (word + reading + first definition)
         const entries = json.data.slice(0, 6);
         box.innerHTML = "";
         entries.forEach(entry => {
@@ -149,22 +144,15 @@ async function fetchJishoExamples(kanji) {
     }
 }
 
-/* ---------------------------
-   GOOGLE TTS (Option A)
-   Uses translate_tts endpoint to play reading audio
-   We try kunyomi first, otherwise onyomi from our reading string.
----------------------------- */
 const ttsAudio = document.getElementById("tts-audio");
 
 function getPreferredReading(readingText) {
-    // readingText like "そら / くう" or "ぼう / のぞむ"
-    // prefer the left side (kunyomi) if present (contains hiragana)
+
     const parts = readingText.split("/").map(s => s.trim());
-    // choose a part that includes hiragana (kunyomi) if any
+
     for (const p of parts) {
         if (/[ぁ-ん]/u.test(p)) return p;
     }
-    // otherwise return first part
     return parts[0] || readingText;
 }
 
@@ -172,7 +160,6 @@ function playTTS(textToSpeak) {
     const status = document.getElementById("audio-status");
     status.innerText = "Preparing audio…";
 
-    // Google Translate TTS endpoint (no API key)
     const base = "https://translate.google.com/translate_tts";
     const params = new URLSearchParams({
         ie: "UTF-8",
@@ -182,7 +169,6 @@ function playTTS(textToSpeak) {
     });
     const url = `${base}?${params.toString()}`;
 
-    // set audio src and play. Some environments may block this.
     ttsAudio.pause();
     ttsAudio.src = url;
     ttsAudio.crossOrigin = "anonymous";
@@ -194,29 +180,25 @@ function playTTS(textToSpeak) {
         status.innerText = "Audio blocked / unavailable in this browser.";
     });
 
-    // clear status when audio ends
     ttsAudio.onended = () => {
         status.innerText = "";
     };
 }
 
-/* Hook up the example & audio buttons */
 document.getElementById("show-examples").addEventListener("click", () => {
     const kanji = deck[currentIndex].char;
     fetchJishoExamples(kanji);
 });
 
 document.getElementById("play-audio").addEventListener("click", () => {
-    const readingText = deck[currentIndex].reading; // e.g. "そら / くう"
+    const readingText = deck[currentIndex].reading;
     const prefer = getPreferredReading(readingText);
-    // prefer contains kana; if it contains slashes or spaces, just send the kana word
+
     const textToSpeak = prefer.split(" ")[0];
     playTTS(textToSpeak);
 });
 
-/* ---------------------------
-   QUIZ LOGIC
----------------------------- */
+
 function shuffle(arr) { return arr.sort(() => Math.random() - 0.5); }
 
 let quizQuestions = [];
@@ -316,32 +298,22 @@ qs.retry.onclick = () => {
     renderQuestion();
 };
 
-/* ---------------------------
-   MINI-GAME LOGIC
----------------------------- */
-// DOM elements
 const gameKanji = document.getElementById("game-kanji");
 const gameReading = document.getElementById("game-reading");
 const gameNew = document.getElementById("game-new");
 const gameAudio = document.getElementById("game-audio");
 
-// Load a random kanji into the mini-game
 function loadGameKanji() {
     const item = kanjiDeck[Math.floor(Math.random() * kanjiDeck.length)];
     gameKanji.textContent = item.kanji;
     gameReading.textContent = item.reading;
 
-    // store for audio
     gameAudio.dataset.reading = item.reading.split("/")[0].trim();
 }
-
-// Play audio for reading
 gameAudio.addEventListener("click", () => {
     playJapaneseAudio(gameAudio.dataset.reading);
 });
 
-// New card button
 gameNew.addEventListener("click", loadGameKanji);
 
-// Load one on startup
 loadGameKanji();
