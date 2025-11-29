@@ -1,5 +1,5 @@
 :root{
-  --bg:#0b1220; --card:#0f1724; --muted:#9fb0c3; --accent:#ffd166; --glass: rgba(255,255,255,0.03);
+  --bg:#0b1220; --card:#0f1724; --muted:#9fb0c3; --accent:#ffd166; --glass: rgba(231, 231, 243, 0.03);
 }
 
 *{box-sizing:border-box}
@@ -20,12 +20,9 @@ main{
   padding:18px; border-radius:12px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.6)
 }
-
-/* Hide panels by default */
 .panel{display:none}
 .panel.active{display:block}
 
-/* Flashcard */
 .card-area{display:flex; justify-content:center; margin:6px 0 12px}
 .card{width:320px; height:360px; perspective:1200px; cursor:pointer; position:relative; transition:transform .4s}
 .card-face{position:absolute; inset:0; backface-visibility:hidden; border-radius:10px;
@@ -40,18 +37,15 @@ main{
 .meaning{font-size:18px; margin-bottom:8px}
 .detail{color:var(--muted); font-size:13px; padding:0 6px; text-align:left}
 
-/* Extra controls on back */
 .card-extra{margin-top:14px; display:flex; flex-direction:column; gap:8px; align-items:center}
-.card-extra button{padding:8px 10px; border-radius:8px; border:none; cursor:pointer; background:rgba(255,255,255,0.04)}
+.card-extra button{padding:8px 10px; border-radius:8px; border:none; cursor:pointer; background:rgba(239, 237, 237, 0.04)}
 .examples-box{background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; margin-top:6px; color:var(--muted); max-height:160px; overflow:auto; text-align:left}
 .audio-status{font-size:13px; color:var(--muted); margin-top:6px}
 
-/* status and controls */
 .status-row{display:flex; justify-content:space-between; color:var(--muted); margin-top:10px}
 .controls-row{display:flex; gap:8px; margin-top:8px}
-.controls-row button{padding:8px 12px; border-radius:8px; background:rgba(255,255,255,0.03); border:none; cursor:pointer}
+.controls-row button{padding:8px 12px; border-radius:8px; background:rgba(232, 230, 230, 0.04); border:none; cursor:pointer}
 
-/* QUIZ */
 .hidden{display:none}
 .quiz-header{display:flex; justify-content:space-between; margin-bottom:10px}
 .quiz-card{background:var(--card); padding:18px; border-radius:10px; text-align:center}
@@ -60,7 +54,6 @@ main{
 .choice.correct{background:#caffca; color:#003300}
 .choice.wrong{background:#ffd5d5; color:#330000}
 
-/* MINI GAME */
 .game-box{
   padding:20px;
   border:1px solid #ccc;
@@ -68,7 +61,7 @@ main{
   margin:auto;
   text-align:center;
   border-radius:12px;
-  color: #07202a;
+  color: #5584ca;
   background: linear-gradient(180deg,#e6f8f3,#d8fbf0);
 }
 .game-kanji{font-size:64px}
