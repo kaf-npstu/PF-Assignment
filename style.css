@@ -38,13 +38,13 @@ main{
 .detail{color:var(--muted); font-size:13px; padding:0 6px; text-align:left}
 
 .card-extra{margin-top:14px; display:flex; flex-direction:column; gap:8px; align-items:center}
-.card-extra button{padding:8px 10px; border-radius:8px; border:none; cursor:pointer; background:rgba(239, 237, 237, 0.04)}
+.card-extra button{padding:8px 10px; border-radius:8px; border:none; cursor:pointer; background:rgba(230, 224, 224, 0.984)}
 .examples-box{background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; margin-top:6px; color:var(--muted); max-height:160px; overflow:auto; text-align:left}
 .audio-status{font-size:13px; color:var(--muted); margin-top:6px}
 
 .status-row{display:flex; justify-content:space-between; color:var(--muted); margin-top:10px}
 .controls-row{display:flex; gap:8px; margin-top:8px}
-.controls-row button{padding:8px 12px; border-radius:8px; background:rgba(232, 230, 230, 0.04); border:none; cursor:pointer}
+.controls-row button{padding:8px 12px; border-radius:8px; background:rgbargba(230, 224, 224, 0.984); border:none; cursor:pointer}
 
 .hidden{display:none}
 .quiz-header{display:flex; justify-content:space-between; margin-bottom:10px}
@@ -92,7 +92,7 @@ footer{text-align:center; margin-top:10px; color:var(--muted); font-size:13px}
   margin: 20px auto;
   padding: 25px;
   width: 300px;
-  background: #fdfdfd;
+  background: #141414d2;
   border-radius: 16px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
